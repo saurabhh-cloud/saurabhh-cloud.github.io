@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio of Saurabh Singh, B.Sc. (Hons) Mathematics student at Ram Lal Anand College, University of Delhi.">
+<title>Saurabh's Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: graph-paper notebook. One wide column, hero with a set-notation block, sections as labelled "definitions". */
+:root {
+  --bg: #f2f5fa;
+  --surface: #ffffff;
+  --fg: #111a33;
+  --muted: #56617c;
+  --line: #d5dce9;
+  --accent: #2a47d6;
+  --accent-soft: #e4e9fb;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1120; --surface: #131a2e; --fg: #e7ecf8; --muted: #95a1bf;
+    --line: #232d4a; --accent: #8aa3ff; --accent-soft: #1b2547; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1120; --surface: #131a2e; --fg: #e7ecf8; --muted: #95a1bf;
+  --line: #232d4a; --accent: #8aa3ff; --accent-soft: #1b2547; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1rem/1.65 var(--body);
+  padding-inline: 1rem;
+  padding-block: 0 4rem;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 60rem; margin-inline: auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* top bar */
+.bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding-block: 1.25rem; font-family: var(--mono); font-size: 0.8125rem;
+}
+.bar .mark { font-weight: 500; color: var(--fg); text-decoration: none; letter-spacing: 0.02em; }
+.bar nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero {
+  position: relative;
+  padding: 2.5rem 0 3rem;
+  display: grid; gap: 2rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0 -1rem; z-index: -1;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 1rem;
+}
+h1 {
+  font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 9vw, 5.5rem);
+  line-height: 0.98; letter-spacing: -0.03em; margin: 0 0 1.25rem; text-wrap: balance;
+}
+.lede { font-size: 1.1875rem; color: var(--muted); max-width: 32rem; margin: 0 0 1.75rem; }
+.lede strong { color: var(--fg); font-weight: 500; }
+.cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  font-family: var(--mono); font-size: 0.875rem; padding: 0.7rem 1.1rem; border-radius: 6px;
+  text-decoration: none; border: 1px solid var(--fg); color: var(--fg); background: transparent;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn:hover { transform: translateY(-1px); }
+
+.set {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  font-family: var(--mono); font-size: 0.875rem; line-height: 1.9; padding: 1.25rem 1.4rem;
+  min-width: 0; overflow-x: auto;
+}
+.set .k { color: var(--accent); }
+.set .c { color: var(--muted); }
+.set ul { list-style: none; margin: 0; padding: 0 0 0 1.5rem; }
+
+/* sections */
+section { padding-block: 3rem; border-top: 1px solid var(--line); }
+.label {
+  font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 0.5rem;
+}
+h2 {
+  font-family: var(--display); font-weight: 700; font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 1.5rem; text-wrap: balance;
+}
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 2rem 3rem; }
+.about p { margin: 0 0 1rem; max-width: 40rem; }
+.facts { margin: 0; display: grid; gap: 0.9rem; align-content: start; }
+.facts div { border-left: 2px solid var(--accent); padding-left: 0.9rem; min-width: 0; }
+.facts dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0.1rem 0 0; font-weight: 500; }
+
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 1.4rem; min-width: 0; display: flex; flex-direction: column; gap: 0.9rem;
+}
+.card h3 { font-family: var(--display); font-size: 1.3rem; margin: 0; letter-spacing: -0.01em; }
+.card .sub { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); margin: -0.5rem 0 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.chips li {
+  font-family: var(--mono); font-size: 0.8125rem; background: var(--accent-soft); color: var(--fg);
+  padding: 0.3rem 0.65rem; border-radius: 5px;
+}
+.status { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); margin: 0; letter-spacing: 0.04em; text-transform: uppercase; }
+.card p.note { margin: 0; color: var(--muted); font-size: 0.9375rem; }
+
+.goals { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem; }
+.goal { min-width: 0; }
+.goal h3 { font-family: var(--display); font-size: 1.25rem; margin: 0 0 0.4rem; }
+.goal p { margin: 0; color: var(--muted); }
+.goal .tag { font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+
+.connect p { max-width: 36rem; color: var(--muted); font-size: 1.125rem; margin: 0 0 1.5rem; }
+.links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.links:empty { display: none; }
+.qed { font-family: var(--mono); color: var(--muted); font-size: 0.8125rem; margin-top: 3rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+.project { flex-direction: row; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
+.pbody { flex: 1 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.calc { flex: 0 1 17rem; min-width: 0; width: 100%; max-width: 17rem; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 14px; padding: 0.9rem; }
+.screen {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; min-height: 3.2rem;
+  font: 500 1.6rem/1.2 var(--mono); text-align: right; padding: 0.55rem 0.8rem; margin-bottom: 0.7rem;
+  overflow-x: auto; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.45rem; }
+.keys button {
+  font: 500 1.05rem var(--mono); height: 2.8rem; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+}
+.keys button.op { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.keys button.wide { grid-column: span 2; }
+.keys button:active { transform: translateY(1px); }
+.contact-line { font-family: var(--mono); font-size: 0.9375rem; margin: 0 0 1.25rem; color: var(--fg); overflow-wrap: anywhere; }
+.copy { font-family: var(--mono); font-size: 0.8125rem; margin-left: 0.5rem; padding: 0.2rem 0.55rem; border-radius: 5px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+
+@media (max-width: 760px) {
+  .hero, .about { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: transform 0.15s ease; }
+}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="bar">
+    <a class="mark" href="#top">saurabh/</a>
+    <nav aria-label="Sections">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#goals">goals</a>
+      <a href="#connect">connect</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">B.Sc. (Hons) Mathematics · First Year</p>
+        <h1>Saurabh Singh</h1>
+        <p class="lede">A mathematics student at <strong>Ram Lal Anand College, University of Delhi</strong>, learning to build for the web and working toward open-source contributions.</p>
+        <div class="cta">
+          <a class="btn primary" href="#skills">See what I'm learning</a>
+          <a class="btn" href="#connect">Let's connect</a>
+        </div>
+      </div>
+      <div class="set" aria-label="Saurabh described as a set">
+        <div><span class="k">Saurabh</span> = {</div>
+        <ul>
+          <li>mathematics_major,</li>
+          <li>cs_minor,</li>
+          <li>frontend_learner,</li>
+          <li>python_learner,</li>
+          <li>hackathon_prep,</li>
+          <li>open_source_explorer</li>
+        </ul>
+        <div>}</div>
+        <div class="c">// still growing: |Saurabh| increases every week</div>
+      </div>
+    </div>
+
+    <section id="about">
+      <p class="label">Definition</p>
+      <h2>About me</h2>
+      <div class="about">
+        <div>
+          <p>I'm a first-year B.Sc. (Hons) Mathematics student with a Computer Science minor. I like problems that have a clean structure, and I like turning that structure into something people can use.</p>
+          <p>Right now I'm building up my frontend skills in HTML, CSS and JavaScript, and learning object-oriented programming in Python. Outside of coursework I'm preparing for hackathons and getting to know open-source communities.</p>
+          <p>I'm always excited to build, learn and network.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Degree</dt><dd>B.Sc. (Hons) Mathematics</dd></div>
+          <div><dt>Minor</dt><dd>Computer Science</dd></div>
+          <div><dt>College</dt><dd>Ram Lal Anand College, University of Delhi</dd></div>
+          <div><dt>Year</dt><dd>First year</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="label">Skills as sets</p>
+      <h2>What I'm working with</h2>
+      <div class="grid3">
+        <article class="card">
+          <p class="status">In progress</p>
+          <h3>Frontend</h3>
+          <p class="sub">F = { HTML, CSS, JavaScript }</p>
+          <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <p class="note">Building pages from scratch, with a focus on layouts that work on a phone as well as a laptop.</p>
+        </article>
+        <article class="card">
+          <p class="status">In progress</p>
+          <h3>Python</h3>
+          <p class="sub">P = { OOP }</p>
+          <ul class="chips"><li>Python</li><li>Classes and objects</li><li>OOP</li></ul>
+          <p class="note">Learning to model problems with classes, methods and clean structure.</p>
+        </article>
+        <article class="card">
+          <p class="status">Core subject</p>
+          <h3>Mathematics</h3>
+          <p class="sub">M = { problem solving }</p>
+          <ul class="chips"><li>Problem solving</li><li>Logical reasoning</li><li>CS minor</li></ul>
+          <p class="note">The habit of breaking a problem into definitions, cases and proofs carries straight into code.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="label">Examples</p>
+      <h2>What I've built</h2>
+      <article class="card project">
+        <div class="pbody">
+          <p class="status">Beginner project · October 2026</p>
+          <h3>Calculator</h3>
+          <p class="note">A four-function calculator built with plain HTML, CSS and JavaScript. It has a button grid, a backspace and clear key, and handles decimals and errors. I built it to practice layout with CSS Grid and wiring buttons to JavaScript.</p>
+          <ul class="chips"><li>HTML</li><li>CSS Grid</li><li>JavaScript</li></ul>
+          <p class="note">Try it on the right. More projects will be added here as I build them.</p>
+        </div>
+        <div class="calc" role="group" aria-label="Calculator demo">
+          <div class="screen" id="calc-screen" aria-live="polite">0</div>
+          <div class="keys" id="calc-keys"></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="goals">
+      <p class="label">To show</p>
+      <h2>Where I'm headed</h2>
+      <div class="goals">
+        <div class="goal">
+          <span class="tag">Goal 1</span>
+          <h3>Compete in hackathons</h3>
+          <p>Preparing now so I can build and ship working projects under time pressure with a team.</p>
+        </div>
+        <div class="goal">
+          <span class="tag">Goal 2</span>
+          <h3>Join open-source communities</h3>
+          <p>Reading real codebases, learning how contributions are reviewed, and making a first pull request.</p>
+        </div>
+        <div class="goal">
+          <span class="tag">Goal 3</span>
+          <h3>Contribute through GSoC</h3>
+          <p>Working toward programs like Google Summer of Code by building skills and a track record step by step.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect" class="connect">
+      <p class="label">Contact</p>
+      <h2>Let's connect</h2>
+      <p>If you're working on something in web development or open source, or you're looking for teammates for a hackathon, I'd like to hear from you.</p>
+      <p class="contact-line">Email: <span id="email-text">saurabh.maths.du@gmail.com</span><button class="copy" id="copy-email" type="button">Copy</button></p>
+      <div class="links" id="links"></div>
+      <div class="qed"><span>Last updated October 2026</span><span>∎</span></div>
+    </section>
+  </main>
+</div>
+
+<script>
+  var PROFILE_LINKS = {
+    "LinkedIn": "https://www.linkedin.com/in/saurabh-singh-2a221843a/",
+    "GitHub": "https://github.com/saurabhh-cloud"
+  };
+
+  (function () {
+    var btn = document.getElementById("copy-email");
+    var txt = document.getElementById("email-text");
+    btn.addEventListener("click", function () {
+      function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); }
+      try {
+        navigator.clipboard.writeText(txt.textContent).then(done, function () {
+          var r = document.createRange(); r.selectNodeContents(txt);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        });
+      } catch (e) {
+        var r = document.createRange(); r.selectNodeContents(txt);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+    });
+  })();
+
+  // Calculator demo
+  (function () {
+    var screen = document.getElementById("calc-screen");
+    var keys = document.getElementById("calc-keys");
+    var expr = "";
+    var layout = [
+      ["C", "clear"], ["⌫", "back", "wide"], ["/", "op"],
+      ["7"], ["8"], ["9"], ["*", "op"],
+      ["4"], ["5"], ["6"], ["-", "op"],
+      ["1"], ["2"], ["3"], ["+", "op"],
+      ["0"], ["."], ["=", "equals", "wide op"]
+    ];
+    function show() { screen.textContent = expr === "" ? "0" : expr; }
+    function press(label, kind) {
+      if (expr === "Error") expr = "";
+      if (kind === "clear") expr = "";
+      else if (kind === "back") expr = expr.slice(0, -1);
+      else if (kind === "equals") {
+        if (!/^[0-9+\-*\/.() ]+$/.test(expr)) { if (expr !== "") expr = "Error"; show(); return; }
+        try {
+          var v = Function('"use strict";return (' + expr + ")")();
+          expr = isFinite(v) ? String(Math.round(v * 1e10) / 1e10) : "Error";
+        } catch (e) { expr = "Error"; }
+      } else expr += label;
+      show();
+    }
+    layout.forEach(function (k) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = k[0];
+      b.className = (k[2] || "") + (k[1] === "op" ? " op" : "");
+      b.setAttribute("aria-label", { "C": "Clear", "⌫": "Backspace", "/": "Divide", "*": "Multiply", "-": "Subtract", "+": "Add", "=": "Equals", ".": "Decimal point" }[k[0]] || k[0]);
+      b.addEventListener("click", function () { press(k[0], k[1]); });
+      keys.appendChild(b);
+    });
+    show();
+  })();
+  (function () {
+    var box = document.getElementById("links");
+    Object.keys(PROFILE_LINKS).forEach(function (name) {
+      var url = PROFILE_LINKS[name];
+      if (!url) return;
+      var a = document.createElement("a");
+      a.className = "btn" + (box.children.length === 0 ? " primary" : "");
+      a.textContent = name;
+      a.href = url;
+      box.appendChild(a);
+    });
+  })();
+</script>
+
+</body>
+</html>
